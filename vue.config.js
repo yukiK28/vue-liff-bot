@@ -2,6 +2,7 @@
 // import path from "path";
 const fs = require('fs')
 module.exports = {
+    publicPath: './',
     devServer: {
         https: {
             key: fs.readFileSync('./localhost+1-key.pem'),
