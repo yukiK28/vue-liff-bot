@@ -34,7 +34,8 @@
 <script>
 // inputFormをComponentとして設定
 // import InputForm from '@/components/InputForm.vue'
-import { liff } from '@/components/utils/liff';
+// import { liff } from '@/utils/liff';
+import liff from '@line/liff';
 
 export default {
   name: 'app',
@@ -46,16 +47,7 @@ export default {
     }
   },
   created() {
-    console.log(liff)
-    liff.init({
-      liffId: '1655189215-9ejqWwgd'
-    })
-    .then(() => {
-      this.loggedIn = liff.isLoggedIn();
-    })
-    .catch((err) => {
-      // 失敗したときの処理
-    });
+    this.initLiff()
   },
   computed: {
     os() {
@@ -78,9 +70,15 @@ export default {
     }
   },
   methods: {
-    // useLiff(id){
-
-    // }
+    async initLiff(){
+      await liff.init({
+        liffId: '1655189215-9ejqWwgd'
+      }).then(() => {
+        this.loggedIn = liff.isLoggedIn();
+      }).catch((err) => {
+        // 失敗したときの処理
+      });
+    }
   }
 }
 </script>
